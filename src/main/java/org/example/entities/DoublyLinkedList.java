@@ -2,7 +2,7 @@ package org.example.entities;
 
 import org.example.interfaces.LinkedList;
 
-public class DoublyLinkedList <T> implements LinkedList {
+public class DoublyLinkedList<T> implements LinkedList<T> {
 
     private Node<T> head;
     private Node<T> tail;
@@ -12,6 +12,7 @@ public class DoublyLinkedList <T> implements LinkedList {
         this.tail = null;
     }
 
+    @Override
     public int size() {
         int size = 0;
         Node<T> current = head;
@@ -29,6 +30,7 @@ public class DoublyLinkedList <T> implements LinkedList {
         return tail;
     }
 
+    @Override
     public T get(int position) {
         if (position <= 0 || position > size()) {
             System.out.println("Position out of range.");
@@ -63,7 +65,7 @@ public class DoublyLinkedList <T> implements LinkedList {
         }
     }
 
-
+    @Override
     public void insertAtBeginning(T data) {
         Node<T> temp = new Node<>(data);
         if (head == null) {
@@ -76,7 +78,7 @@ public class DoublyLinkedList <T> implements LinkedList {
         }
     }
 
-
+    @Override
     public void insertAtEnd(T data) {
         Node<T> temp = new Node<>(data);
         if (tail == null) {
@@ -112,7 +114,7 @@ public class DoublyLinkedList <T> implements LinkedList {
         }
     }
 
-
+    @Override
     public void deleteAtBeginning()  {
         if (head == null) {
             return;
@@ -132,6 +134,7 @@ public class DoublyLinkedList <T> implements LinkedList {
         temp.setNext(null);
     }
 
+    @Override
     public void deleteAtEnd() {
         if (tail == null) {
             return;
@@ -150,6 +153,7 @@ public class DoublyLinkedList <T> implements LinkedList {
         temp.setPrev(null);
     }
 
+    @Override
     public void delete(int pos) {
         if (head == null) {
             return;
@@ -163,11 +167,6 @@ public class DoublyLinkedList <T> implements LinkedList {
 
         Node<T> current = head;
         int count = 1;
-
-//	       TODO rewrite if position is 0 or less (in all methods?)
-        if (pos > size()) {
-            return;
-        }
 
         while (current != null && count != pos) {
             current = current.getNext();
@@ -192,6 +191,7 @@ public class DoublyLinkedList <T> implements LinkedList {
         current.setNext(null);
     }
 
+    @Override
     public boolean isEmpty() {
         return head == null;
     }
