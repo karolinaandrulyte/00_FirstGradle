@@ -2,6 +2,8 @@ package org.example.entities;
 
 import org.example.interfaces.LinkedList;
 
+import java.util.Objects;
+
 public class DoublyLinkedList<T> implements LinkedList<T> {
 
     private Node<T> head;
@@ -20,7 +22,8 @@ public class DoublyLinkedList<T> implements LinkedList<T> {
             size++;
             current = current.getNext();
         }
-        return size; }
+        return size;
+    }
 
     public Node<T> getHead() {
         return head;
@@ -32,6 +35,7 @@ public class DoublyLinkedList<T> implements LinkedList<T> {
 
     @Override
     public T get(int position) {
+
         if (position <= 0 || position > size()) {
             System.out.println("Position out of range.");
             return null;
@@ -213,7 +217,16 @@ public class DoublyLinkedList<T> implements LinkedList<T> {
         return sb.toString();
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof DoublyLinkedList<?> that))
+            return false;
 
+        return Objects.equals(head, that.head) && Objects.equals(tail, that.tail);
+    }
 
-
+    @Override
+    public int hashCode() {
+        return Objects.hash(head, tail);
+    }
 }

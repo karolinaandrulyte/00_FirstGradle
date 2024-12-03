@@ -2,10 +2,10 @@ package org.example;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Optional;
 import java.util.Scanner;
 
 import org.example.entities.DoublyLinkedList;
-import org.example.entities.Node;
 
 public class Main {
 
@@ -14,8 +14,6 @@ public class Main {
         String filePath = "C:\\Users\\karandr\\IdeaProjects\\00_FirstGradle\\src\\main\\java\\text.txt";
 
         DoublyLinkedList<String> list = new DoublyLinkedList<>();
-        Node<String> node;
-
 
         try {
             File myObj = new File(filePath);
@@ -30,16 +28,24 @@ public class Main {
 
         } catch (IOException e) {
             System.out.println("IOException occurred.");
-            e.printStackTrace(); }
+            e.printStackTrace();
+        }
 
-        System.out.println(list.size());
+//      move to get()
+        Optional<String> checkNull = Optional.ofNullable(list.get(2));
+
+        if (checkNull.isPresent()) {
+            String e = list.get(2).toUpperCase();
+            System.out.println("The second element is " + e);
+        }
+
+        else
+            System.out.println("Element is null");
+
+        System.out.println("There are " + list.size() + " elements in the list");
 
         list.delete(1);
         list.traverseForward();
-
-        String e = list.get(2);
-        System.out.println();
-        System.out.println(e);
 
         System.out.println();
         System.out.println(list);
