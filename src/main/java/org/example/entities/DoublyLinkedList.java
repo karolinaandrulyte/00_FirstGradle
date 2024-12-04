@@ -3,6 +3,7 @@ package org.example.entities;
 import org.example.interfaces.LinkedList;
 
 import java.util.Objects;
+import java.util.Optional;
 
 public class DoublyLinkedList<T> implements LinkedList<T> {
 
@@ -49,7 +50,17 @@ public class DoublyLinkedList<T> implements LinkedList<T> {
             count++;
         }
 
-        return current != null ? current.getData() : null;
+        T data = current != null ? current.getData() : null;
+
+        Optional<T> optionalData = Optional.ofNullable(data);
+
+        optionalData.ifPresentOrElse(
+                dataValue -> System.out.println("Element at position " + position + ": " + dataValue),
+                () -> System.out.println("Element at position " + position + " is null.")
+        );
+
+        System.out.println("There are " + size() + " elements in the list.");
+        return data;
     }
 
 
@@ -219,14 +230,44 @@ public class DoublyLinkedList<T> implements LinkedList<T> {
 
     @Override
     public boolean equals(Object o) {
-        if (!(o instanceof DoublyLinkedList<?> that))
-            return false;
+        if (this == o) {
+            return true;
+        }
 
-        return Objects.equals(head, that.head) && Objects.equals(tail, that.tail);
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        DoublyLinkedList<?> that = (DoublyLinkedList<?>) o;
+
+        if (!Objects.equals(this.head, that.head) || !Objects.equals(this.tail, that.tail)) {
+            return false;
+        }
+
+        Node<?> currentThis = this.head;
+        Node<?> currentThat = that.head;
+
+        while (currentThis != null && currentThat != null) {
+            if (!Objects.equals(currentThis.getData(), currentThat.getData())) {
+                return false;
+            }
+            currentThis = currentThis.getNext();
+            currentThat = currentThat.getNext();
+        }
+
+        return currentThis == null && currentThat == null;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(head, tail);
+        int result = 1;
+        Node<T> current = head;
+
+        while (current != null) {
+            result = 31 * result + (current.getData() == null ? 0 : current.getData().hashCode());
+            current = current.getNext();
+        }
+
+        return result;
     }
 }

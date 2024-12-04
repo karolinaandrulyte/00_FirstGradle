@@ -31,18 +31,7 @@ public class Main {
             e.printStackTrace();
         }
 
-//      move to get()
-        Optional<String> checkNull = Optional.ofNullable(list.get(2));
-
-        if (checkNull.isPresent()) {
-            String e = list.get(2).toUpperCase();
-            System.out.println("The second element is " + e);
-        }
-
-        else
-            System.out.println("Element is null");
-
-        System.out.println("There are " + list.size() + " elements in the list");
+        list.get(2);
 
         list.delete(1);
         list.traverseForward();
