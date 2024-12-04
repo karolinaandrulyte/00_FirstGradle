@@ -174,7 +174,6 @@ public class DoublyLinkedList<T> implements LinkedList<T> {
             return;
         }
 
-
         if (pos == 1) {
             deleteAtBeginning();
             return;
@@ -228,6 +227,9 @@ public class DoublyLinkedList<T> implements LinkedList<T> {
         return sb.toString();
     }
 
+//    check the sizes of the lists before comparing their head and tail.
+//    If the sizes differ, the lists cannot be equal, and you can save computation time by avoiding the traversal of nodes.
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -239,6 +241,10 @@ public class DoublyLinkedList<T> implements LinkedList<T> {
         }
 
         DoublyLinkedList<?> that = (DoublyLinkedList<?>) o;
+
+        if (this.size() != that.size()) {
+            return false;
+        }
 
         if (!Objects.equals(this.head, that.head) || !Objects.equals(this.tail, that.tail)) {
             return false;
@@ -257,6 +263,7 @@ public class DoublyLinkedList<T> implements LinkedList<T> {
 
         return currentThis == null && currentThat == null;
     }
+
 
     @Override
     public int hashCode() {
