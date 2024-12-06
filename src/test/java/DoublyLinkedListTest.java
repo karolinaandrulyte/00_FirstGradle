@@ -15,8 +15,8 @@ public class DoublyLinkedListTest {
     public void sizeIsZeroWhenListIsEmpty() {
         DoublyLinkedList <String> list = new DoublyLinkedList<>();
         int size = list.
-        assertThat(size,equalTo(0));
-        assertTrue(list.isEmpty());
+            assertThat(size,equalTo(0));
+            assertTrue(list.isEmpty());
     }
 
     @Test
