@@ -10,7 +10,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        String filePath = "C:\\Users\\karandr\\IdeaProjects\\00_FirstGradle\\src\\main\\java\\text.txt";
+        String filePath = "C:\\Users\\karandr\\IdeaProjects\\00_FirstGradle\\src\\main\\resources\\text.txt";
 
         DoublyLinkedList<String> list = new DoublyLinkedList<>();
 
