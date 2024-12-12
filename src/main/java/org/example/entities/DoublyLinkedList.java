@@ -246,14 +246,10 @@ public class DoublyLinkedList<T> implements LinkedList<T> {
             return false;
         }
 
-        if (!Objects.equals(this.head, that.head) || !Objects.equals(this.tail, that.tail)) {
-            return false;
-        }
-
         Node<?> currentThis = this.head;
         Node<?> currentThat = that.head;
 
-        while (currentThis != null && currentThat != null) {
+        while (currentThis != null ) {
             if (!Objects.equals(currentThis.getData(), currentThat.getData())) {
                 return false;
             }
@@ -261,7 +257,7 @@ public class DoublyLinkedList<T> implements LinkedList<T> {
             currentThat = currentThat.getNext();
         }
 
-        return currentThis == null && currentThat == null;
+        return true;
     }
 
 
