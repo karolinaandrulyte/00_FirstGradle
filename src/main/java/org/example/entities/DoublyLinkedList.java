@@ -1,10 +1,12 @@
 package org.example.entities;
 
+import lombok.Data;
 import org.example.interfaces.LinkedList;
 
 import java.util.Objects;
 import java.util.Optional;
 
+@Data
 public class DoublyLinkedList<T> implements LinkedList<T> {
 
     private Node<T> head;
@@ -24,14 +26,6 @@ public class DoublyLinkedList<T> implements LinkedList<T> {
             current = current.getNext();
         }
         return size;
-    }
-
-    public Node<T> getHead() {
-        return head;
-    }
-
-    public Node<T> getTail() {
-        return tail;
     }
 
     @Override
@@ -259,7 +253,6 @@ public class DoublyLinkedList<T> implements LinkedList<T> {
 
         return true;
     }
-
 
     @Override
     public int hashCode() {
