@@ -15,11 +15,11 @@ public class LinkedListService {
 
     public void initializeAndManipulateList(String fileName) {
         fileService.loadFileIntoList(fileName, linkedList);
-        System.out.println("Initial List: " + display());
 
-        System.out.println("Element at position 2: " + getNode(2));
-        deleteNode(1);
-        System.out.println("After deletion: " + display());
+        System.out.println(linkedList);
+        linkedList.get(2);
+        linkedList.delete(1);
+        System.out.println(linkedList);
     }
 
     public void addNode(String value) {
